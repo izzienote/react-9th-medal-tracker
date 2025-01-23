@@ -38,4 +38,4 @@ CRUD
 
 ### 🚀 트러블 슈팅
 
-[000] [000](주소)
+[CRD] [이름이 중복되는 값 거르기? some vs find](https://izzie-note.tistory.com/111)
