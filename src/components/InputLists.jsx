@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
 const InputLists = (props) => {
-  const { setScores, scores } = props;
+  const { setCurrentState, currentState } = props;
   // 데이터 초기값 정의
   const [data, setData] = useState({
+    id: crypto.randomUUID(),
     addCountry: "",
-    gold: 0,
-    silver: 0,
-    bronze: 0,
+    gold: "",
+    silver: "",
+    bronze: "",
   });
 
   // 인풋값 핸들러
@@ -23,9 +24,48 @@ const InputLists = (props) => {
   const handleBronze = (event) =>
     setData({ ...data, ["bronze"]: event.target.value });
 
-  // 클릭 시, 데이터값 입력받은 새 데이터로 정의
-  const btnClick = () => {
-    setScores([...scores, data]);
+  // [데이터 추가]
+  const AddBtn = () => {
+    //유효성 검사 _ 빈값
+    if (!data.addCountry || !data.gold || !data.silver || !data.bronze) {
+      alert("모든 입력 필드를 채워주세요!");
+      return;
+    }
+
+    //유효성 검사 _ 중복
+    const isCountryExist = currentState.some(
+      (item) => item.addCountry === data.addCountry
+    );
+
+    if (isCountryExist) {
+      alert("이미 입력된 국가입니다.");
+
+      setData({
+        id: crypto.randomUUID(),
+        addCountry: "",
+        gold: "",
+        silver: "",
+        bronze: "",
+      });
+    } else {
+      setCurrentState([data, ...currentState]);
+
+      setData({
+        id: crypto.randomUUID(),
+        addCountry: "",
+        gold: "",
+        silver: "",
+        bronze: "",
+      });
+    }
+  };
+
+  // [데이터 업데이트]
+  const UpdateBtn = () => {
+    alert("클릭됨");
+    // 국가명이 같은 데이터 찾기
+    // 새로 입력한 값으로 없데이트 후,
+    // map으로 다시 뿌려주기
   };
 
   return (
@@ -88,10 +128,10 @@ const InputLists = (props) => {
         />
 
         <div>
-          <button onClick={btnClick} className="button-style-yellow">
+          <button onClick={AddBtn} className="button-style-yellow">
             국가 추가
           </button>
-          <button onClick={btnClick} className="button-style-yellow">
+          <button onClick={UpdateBtn} className="button-style-yellow">
             업데이트
           </button>
         </div>
