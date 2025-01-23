@@ -1,9 +1,18 @@
 import React from "react";
 
 const TableData = (props) => {
-  //prop값 가져와서, 구조분해 할당 후 아래 바뀌어야하는 해당 부분에 {}로 바꿔넣기
   console.log(props);
-  const { scores } = props;
+  const { currentState, setCurrentState } = props;
+
+  const DeleteBtn = (countryName) => {
+    // 필터링하여 삭제할 국가를 제외한 새 배열을 만듭니다.
+    const updatedState = currentState.filter(
+      (item) => item.addCountry !== countryName
+    );
+
+    // 필터링된 새로운 상태를 setCurrentState로 설정
+    setCurrentState(updatedState);
+  };
 
   return (
     <>
@@ -18,24 +27,20 @@ const TableData = (props) => {
           </tr>
         </thead>
         <tbody>
-          {/* ---이부분으로 버튼의 props data를 받아와야함--- */}
-          {/* <tr>
-            <td>{data.addCountry}</td>
-            <td>{data.gold}</td>
-            <td>{data.silver}</td>
-            <td>{data.bronze}</td>
-            <td><button className='button-style-red'>삭제</button></td>
-          </tr> */}
-
-          {scores.map((scores) => {
+          {currentState.map((currentState) => {
             return (
-              <tr key={scores.id}>
-                <td>{scores.addCountry}</td>
-                <td>{scores.gold}</td>
-                <td>{scores.silver}</td>
-                <td>{scores.bronze}</td>
+              <tr key={currentState.id}>
+                <td>{currentState.addCountry}</td>
+                <td>{currentState.gold}</td>
+                <td>{currentState.silver}</td>
+                <td>{currentState.bronze}</td>
                 <td>
-                  <button className="button-style-red">삭제</button>
+                  <button
+                    onClick={() => DeleteBtn(currentState.addCountry)}
+                    className="button-style-red"
+                  >
+                    삭제
+                  </button>
                 </td>
               </tr>
             );
