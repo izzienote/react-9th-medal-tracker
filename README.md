@@ -40,6 +40,7 @@ Currently, two official plugins are available:
 - 정렬 기능
 
 1. 금메달 기준으로 내림차순 정렬
+2. 이벤트 위임 : form onsubmit에서 "국가추가", "업데이트" 버튼이 동작할 때 타겟 이름에 따라 실행
 
 <br>
 
