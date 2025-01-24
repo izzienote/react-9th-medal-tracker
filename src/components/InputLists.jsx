@@ -2,16 +2,18 @@ import React, { useState } from "react";
 
 const InputLists = (props) => {
   const { setCurrentState, currentState } = props;
-  // 데이터 초기값 정의
-  const [data, setData] = useState({
+  // [input의 초기값 설정] : id, 국가명, 금메달, 은메달, 동메달의 초기값을 설정
+  const defaultDataformat = {
     id: crypto.randomUUID(),
     addCountry: "",
     gold: "",
     silver: "",
     bronze: "",
-  });
+  };
 
-  // 인풋값 핸들러
+  const [data, setData] = useState(defaultDataformat);
+
+  // [input handler] : 국가명, 금메달, 은메달, 동메달의 값(event.target.value)를 setData에 반영
   const handleCountry = (event) =>
     setData({ ...data, ["addCountry"]: event.target.value });
 
@@ -35,78 +37,66 @@ const InputLists = (props) => {
       setData({ ...data, bronze: value });
     }
   };
-  //폼 핸들러
+  // [form onsubmit으로 버튼 핸들링 _ 현재 "국가추가" 버튼 하나만 제어 가능]
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 유효성 검사 _ 빈값
+
+    // [유효성검사] : 빈값 있을 때 알림
     if (!data.addCountry || !data.gold || !data.silver || !data.bronze) {
       alert("모든 입력 필드를 채워주세요!");
       return;
     }
 
-    // 유효성 검사 _ 중복
+    // [유효성검사] : 입력되어있는 값과 입력할 값이 같은지 중복 검사
     const isCountryExist = currentState.some(
       (item) => item.addCountry === data.addCountry
     );
-
+    // [유효성검사] : 해당 국가가 존재할 경우, 알림
     if (isCountryExist) {
       alert("이미 입력된 국가입니다.");
     } else {
+      // [Create] : setCurrentState에 새로운 리스트 추가
       setCurrentState([data, ...currentState].sort((a, b) => b.gold - a.gold));
     }
 
-    // 데이터 초기화
-    setData({
-      id: crypto.randomUUID(),
-      addCountry: "",
-      gold: "",
-      silver: "",
-      bronze: "",
-    });
+    // [유저 편의성] : 동작이 끝난 후, input 값 초기화로 비우기
+    setData(defaultDataformat);
   };
 
-  console.log(currentState);
-  // [데이터 업데이트]
+  // [버튼의 onClick 및 handleUpate 함수로 "업데이트" 버튼 제어] : 이벤트 위임 공부한 후 form과 합쳐보도록 하겠습니다...
   const handleUpdate = () => {
-    // 유효성 검사 _ 빈값
+    // [유효성검사] : 빈값 있을 때 알림
     if (!data.addCountry || !data.gold || !data.silver || !data.bronze) {
       alert("모든 입력 필드를 채워주세요!");
       return;
     }
-
-    // 유효성 검사 _ 중복값 존재하는지 찾기 (같은 로직 사용)
+    // [유효성검사] : 입력되어있는 값과 입력할 값이 같은지 중복 검사
     const isCountryExist = currentState.some(
       (item) => item.addCountry === data.addCountry
     );
-    // 존재하지 않는 국가일 경우, 알림
+    // [유효성검사] : 해당 국가가 존재하지 않을 경우, 알림
     if (!isCountryExist) {
       alert("존재하지 않는 국가입니다.");
     }
 
-    // 새로 입력한 값을 map으로 다시 뿌려주기
-    setCurrentState((prevState) =>
-      prevState.map((item) => {
-        if (item.addCountry === data.addCountry) {
-          return {
-            ...item,
-            gold: data.gold,
-            silver: data.silver,
-            bronze: data.bronze,
-          };
-        } else {
-          return item;
-        }
-      })
-    );
-
-    // 데이터 초기화
-    setData({
-      id: crypto.randomUUID(),
-      addCountry: "",
-      gold: "",
-      silver: "",
-      bronze: "",
+    // [Update] : 입력된 값으로 변경 반영
+    const UpdatedState = currentState.map((item) => {
+      if (item.addCountry === data.addCountry) {
+        return {
+          ...item,
+          gold: data.gold,
+          silver: data.silver,
+          bronze: data.bronze,
+        };
+      } else {
+        return item;
+      }
     });
+
+    setCurrentState(UpdatedState.sort((a, b) => b.gold - a.gold));
+
+    // [유저 편의성] : 동작이 끝난 후, input 값 초기화로 비우기
+    setData(defaultDataformat);
   };
 
   return (

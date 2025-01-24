@@ -37,6 +37,10 @@ Currently, two official plugins are available:
 1. 중복 국가 처리
 2. 존재하지 않는 국가 알림
 
+- 정렬 기능
+
+1. 금메달 기준으로 내림차순 정렬
+
 <br>
 
 ### 깃헙 커밋 규칙

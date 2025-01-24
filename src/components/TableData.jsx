@@ -1,17 +1,13 @@
 import React from "react";
 
 const TableData = (props) => {
-  // console.log(props);
   const { currentState, setCurrentState } = props;
-
+  // [delete] : 국가명을 기준으로 filter()를 사용하여, 삭제값에 해당하는 아이템만 제외하고 새 배열로 반환
   const DeleteBtn = (countryName) => {
-    // 필터링하여 삭제할 국가를 제외한 새 배열을 만듭니다.
     const updatedState = currentState.filter(
       (item) => item.addCountry !== countryName
     );
-
-    // 필터링된 새로운 상태를 setCurrentState로 설정
-    setCurrentState(updatedState);
+    setCurrentState(updatedState); //setCurrentState 에 결과값 전달
   };
 
   return (
@@ -27,6 +23,7 @@ const TableData = (props) => {
           </tr>
         </thead>
         <tbody>
+          {/* map함수로 테이블 바디 값을 넣어주기 */}
           {currentState.map((currentState) => {
             return (
               <tr key={currentState.id}>
@@ -35,6 +32,7 @@ const TableData = (props) => {
                 <td>{currentState.silver}</td>
                 <td>{currentState.bronze}</td>
                 <td>
+                  {/* 삭제버튼에 현재상태의 국가명 값 받기 */}
                   <button
                     onClick={() => DeleteBtn(currentState.addCountry)}
                     className="button-style-red"
