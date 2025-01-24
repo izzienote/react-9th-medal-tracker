@@ -66,3 +66,5 @@ Currently, two official plugins are available:
 [객체복사 & ... 사용] [{...data, gold: 변경값, silver: 변경값}](https://izzie-note.tistory.com/113)
 
 [정렬기능] [추가할때는 적용되는데, 값을 업데이트 했을때는 또 어떻게 적용하지?](https://izzie-note.tistory.com/115)
+
+[form 이벤트위임] [나의 react에서는 왜 e.target.name이 안되는가?..](https://izzie-note.tistory.com/116)
