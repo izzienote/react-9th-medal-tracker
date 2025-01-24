@@ -13,7 +13,7 @@ Currently, two official plugins are available:
 
 # 올림픽 메달 순위
 
-![alt text](image.png)
+![alt text](image-1.png)
 
 ## 🌑 구현 기능
 
