@@ -50,6 +50,7 @@ Currently, two official plugins are available:
 | 🚚 move     | 파일 옮김/정리                 |
 | 🔥 del      | 기능/파일을 삭제               |
 | 💄 style    | css                            |
+| 🌱 readme   | readme                         |
 
 <br>
 
@@ -58,3 +59,5 @@ Currently, two official plugins are available:
 [CRUD] [이름이 중복되는 값 거르기? some vs find](https://izzie-note.tistory.com/111)
 
 [객체복사 & ... 사용] [{...data, gold: 변경값, silver: 변경값}](https://izzie-note.tistory.com/113)
+
+[정렬기능] [추가할때는 적용되는데, 값을 업데이트 했을때는 또 어떻게 적용하지?](https://izzie-note.tistory.com/115)
