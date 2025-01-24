@@ -52,7 +52,7 @@ const InputLists = (props) => {
     if (isCountryExist) {
       alert("이미 입력된 국가입니다.");
     } else {
-      setCurrentState([data, ...currentState]);
+      setCurrentState([data, ...currentState].sort((a, b) => b.gold - a.gold));
     }
 
     // 데이터 초기화
@@ -68,7 +68,11 @@ const InputLists = (props) => {
   console.log(currentState);
   // [데이터 업데이트]
   const handleUpdate = () => {
-    // alert("클릭됨");
+    // 유효성 검사 _ 빈값
+    if (!data.addCountry || !data.gold || !data.silver || !data.bronze) {
+      alert("모든 입력 필드를 채워주세요!");
+      return;
+    }
 
     // 유효성 검사 _ 중복값 존재하는지 찾기 (같은 로직 사용)
     const isCountryExist = currentState.some(
@@ -94,6 +98,15 @@ const InputLists = (props) => {
         }
       })
     );
+
+    // 데이터 초기화
+    setData({
+      id: crypto.randomUUID(),
+      addCountry: "",
+      gold: "",
+      silver: "",
+      bronze: "",
+    });
   };
 
   return (
