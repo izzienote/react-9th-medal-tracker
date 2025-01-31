@@ -1,17 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-  <br>
-  <br>
-  <br>
-  <br>
-
-# 올림픽 메달 순위
+# 📁 올림픽 메달 트래커
 
 ![alt text](image-1.png)
 
@@ -40,7 +27,7 @@ Currently, two official plugins are available:
 - 정렬 기능
 
 1. 금메달 기준으로 내림차순 정렬
-2. 이벤트 위임 : form onsubmit에서 "국가추가", "업데이트" 버튼이 동작할 때 타겟 이름에 따라 실행
+2. form 하나로 버튼제어 : form onsubmit에서 "국가추가", "업데이트" 버튼이 동작할 때 타겟 이름에 따라 실행
 
 <br>
 
